@@ -6,7 +6,7 @@ export default {
   components: {
     MovieList,
     SearchBar
-},
+  },
 
   data() {
     return {
@@ -18,8 +18,15 @@ export default {
 </script>
 
 <template>
-  <SearchBar></SearchBar>
-  <MovieList></MovieList>
+  <header>
+    <SearchBar></SearchBar>
+  </header>
+  <main>
+    <MovieList></MovieList>
+  </main>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+main{
+  padding-top: 3rem;
+}</style>

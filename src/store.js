@@ -3,7 +3,8 @@ import { reactive } from "vue";
 
 export const store = reactive({
     search:"",
-    movieList: []
+    movieList: [],
+    TVlist:[]
 });
 
 export function getMovieFromApi() {
@@ -28,5 +29,4 @@ axios.get("https://api.themoviedb.org/3/search/tv",{
     }  )
 
 } 
-
 

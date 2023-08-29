@@ -4,7 +4,8 @@ import MovieCard from "./MovieCard.vue";
 
 export default {
     components:{
-        MovieCard
+        MovieCard,
+        
     },
     data() {
         return {
@@ -18,9 +19,12 @@ export default {
 
 <template>
     <div class="container">
-        <div class="row row-cols-5 gy-5">
+        <div class="row row-cols-4 gy-5">
             <div class="col" v-for="singleMovie in store.movieList ">
                 <MovieCard :movie="singleMovie"></MovieCard>
+            </div>
+            <div class="col" v-for="singleTv in store.TVlist ">
+                <MovieCard :tvSeries="singleTv"></MovieCard>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <script >
-import { store, getMovieFromApi } from "../store"
+import { store, getMovieFromApi, getTVSeriesFromApi } from "../store"
 
 export default {
     data() {
@@ -8,8 +8,10 @@ export default {
         }
     },
     methods:{
+        getTVSeriesFromApi,
         getMovieFromApi,
         clearlist(){
+            store.TVlist=[]
             store.movieList=[]
         }
     },
@@ -17,13 +19,17 @@ export default {
 </script>
 
 <template>
-    <div class="input-group mb-3">
+    <div class="input-group mb-3 my-searchbar">
         <input type="text" class="form-control" v-model="store.search" placeholder="Cerca un film"
             aria-label="Cerca un film" aria-describedby="button-addon2"
-            @keyup.enter="getMovieFromApi(), clearlist()">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="getMovieFromApi(),clearlist()">Cerca</button>
+            @keyup.enter="getMovieFromApi(),getTVSeriesFromApi(), clearlist()">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="getMovieFromApi(),getTVSeriesFromApi(),clearlist()">Cerca</button>
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.my-searchbar{
+    padding: 2rem;
+}
+</style>
 
