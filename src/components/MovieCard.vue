@@ -1,5 +1,4 @@
 <script >
-import { triggerRef } from "vue"
 import { store, getMovieFromApi, getTVSeriesFromApi } from "../store"
 
 export default {
@@ -86,7 +85,6 @@ export default {
                     <i class="fa-solid fa-star star-icon" v-for="n in roundAverageVote(movie.vote_average)"></i>
                     <i class="fa-regular fa-star star-icon" v-for="n in (5 - roundAverageVote(movie.vote_average) )"></i>
                 </div>
-                <!--<div>{{ roundAverageVote(movie.vote_average )}}</div>-->
             </div>
 
         </div>
@@ -102,8 +100,8 @@ export default {
                         :src="`https://flagsapi.com/${checkLangFlag(tvSeries.original_language).toUpperCase()}/flat/24.png`">
                 </div>
                 <div class="vote-preview">
-                    <i class="fa-solid fa-star star-icon" v-for="n in roundAverageVote(movie.vote_average)"></i>
-                    <i class="fa-regular fa-star star-icon" v-for="n in (5 - roundAverageVote(movie.vote_average) )"></i>
+                    <i class="fa-solid fa-star star-icon" v-for="n in roundAverageVote(tvSeries.vote_average)"></i>
+                    <i class="fa-regular fa-star star-icon" v-for="n in (5 - roundAverageVote(tvSeries.vote_average) )"></i>
                 </div>
             </div>
 

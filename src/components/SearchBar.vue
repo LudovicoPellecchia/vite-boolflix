@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-    <div class="input-group mb-3 my-searchbar">
+    <div class="input-group my-searchbar">
         <input type="text" class="form-control" v-model="store.search" placeholder="Cerca un film"
             aria-label="Cerca un film" aria-describedby="button-addon2"
             @keyup.enter="getMovieFromApi(),getTVSeriesFromApi(), clearlist()">
@@ -29,6 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 .my-searchbar{
+
     padding: 2rem;
 }
 </style>

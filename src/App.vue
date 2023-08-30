@@ -1,11 +1,13 @@
 <script>
 import MovieList from "./components/MovieList.vue";
 import SearchBar from "./components/SearchBar.vue";
+import TheHeader from "./components/TheHeader.vue";
 
 export default {
   components: {
     MovieList,
-    SearchBar
+    SearchBar,
+    TheHeader
   },
 
   data() {
@@ -18,15 +20,14 @@ export default {
 </script>
 
 <template>
-  <header>
-    <SearchBar></SearchBar>
-  </header>
+  <TheHeader></TheHeader>
   <main>
     <MovieList></MovieList>
   </main>
 </template>
 
 <style lang="scss">
-main{
+main {
   padding-top: 3rem;
-}</style>
+}
+</style>
