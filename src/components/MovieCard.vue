@@ -1,4 +1,5 @@
 <script >
+import { triggerRef } from "vue"
 import { store, getMovieFromApi, getTVSeriesFromApi } from "../store"
 
 export default {
@@ -10,6 +11,7 @@ export default {
     data() {
         return {
             store,
+            hovered: false
         }
     },
     methods: {
@@ -32,7 +34,17 @@ export default {
             return flag
         },
 
-        roundAverageVote(){
+        hoverDelay(){
+                setTimeout(() => {this.hovered = true}, 700)
+            },
+        
+        clearHoverDelay(){
+            clearTimeout(this.hovered)
+            return this.hovered = false
+            
+        },
+
+        roundAverageVote() {
         }
     },
 
@@ -45,35 +57,66 @@ export default {
 </script>
 
 <template>
-    <div class="my-card">
+    <div class="my-card" @mouseenter="hoverDelay" @mouseleave="clearHoverDelay" :class="{'on-hover': hovered }">
 
         <div v-if="movie">
             <div class="img-preview">
-                <img :src="`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`" alt="">
+                <img :src="`https://image.tmdb.org/t/p/w780/${movie.backdrop_path}`" alt="">
             </div>
-            <div>{{ movie.title }}</div>
-            <div>{{ movie.original_title }}</div>
-            <div><img :src="`https://flagsapi.com/${checkLangFlag(movie.original_language).toUpperCase()}/flat/24.png`">
+            <div class="preview-info">
+                <div>{{ movie.title }}</div>
+                <div>{{ movie.original_title }}</div>
+                <div><img :src="`https://flagsapi.com/${checkLangFlag(movie.original_language).toUpperCase()}/flat/24.png`">
+                </div>
+                <div>{{ movie.vote_average }}</div>
             </div>
-            <div>{{ movie.vote_average }}</div>
+
         </div>
 
         <div v-else-if="tvSeries">
             <div class="img-preview">
-                <img :src="`https://image.tmdb.org/t/p/w300/${tvSeries.backdrop_path}`" alt="">
+                <img :src="`https://image.tmdb.org/t/p/w780/${tvSeries.backdrop_path}`" alt="">
             </div>
-            <div>{{ tvSeries.name }}</div>
-            <div>{{ tvSeries.original_name }}</div>
-            <div><img :src="`https://flagsapi.com/${checkLangFlag(tvSeries.original_language).toUpperCase()}/flat/24.png`">
+            <div class="preview-info">
+                <div>{{ tvSeries.name }}</div>
+                <div>{{ tvSeries.original_name }}</div>
+                <div><img
+                        :src="`https://flagsapi.com/${checkLangFlag(tvSeries.original_language).toUpperCase()}/flat/24.png`">
+                </div>
+                <div>{{ tvSeries.vote_average }}</div>
             </div>
-            <div>{{ tvSeries.vote_average }}</div>
+
         </div>
 
     </div>
 </template>
 
 <style lang="scss" scoped>
-.img-preview img{
+.my-card {
+    color: white;
+    background-color: #141414;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s;
+
+    .preview-info{
+        padding: 20px;
+    }
+}
+
+.on-hover:hover{
+    z-index: 2;
+    transform: scale(1.4);
+}
+
+
+
+.img-preview img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     width: 100%;
     height: 100%;
     object-fit: cover;
