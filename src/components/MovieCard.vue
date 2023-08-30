@@ -34,15 +34,28 @@ export default {
             return flag
         },
 
-        hoverDelay(){
-                setTimeout(() => {this.hovered = true}, 700)
-            },
-        
-        clearHoverDelay(){
+        hoverDelay() {
+            setTimeout(() => { this.hovered = true }, 700)
+        },
+
+        clearHoverDelay() {
             clearTimeout(this.hovered)
             return this.hovered = false
-            
+
         },
+
+        ImgPreviewFunction(){
+        let url = "https://image.tmdb.org/t/p/w780";
+        if (this.movie && this.movie.backdrop_path !== null) {
+            url += this.movie.backdrop_path;
+        } else if (this.tvSeries && this.tvSeries.backdrop_path !== null) {
+            url += this.tvSeries.backdrop_path;
+        } else {
+            url = "/video-movie-placeholder-image-grey.png";
+        }
+
+        return url;
+    },
 
         roundAverageVote() {
         }
@@ -57,11 +70,11 @@ export default {
 </script>
 
 <template>
-    <div class="my-card" @mouseenter="hoverDelay" @mouseleave="clearHoverDelay" :class="{'on-hover': hovered }">
+    <div class="my-card" @mouseenter="hoverDelay" @mouseleave="clearHoverDelay" :class="{ 'on-hover': hovered }">
 
         <div v-if="movie">
             <div class="img-preview">
-                <img :src="`https://image.tmdb.org/t/p/w780/${movie.backdrop_path}`" alt="">
+                <img :src="ImgPreviewFunction()" alt="">
             </div>
             <div class="preview-info">
                 <div>{{ movie.title }}</div>
@@ -75,7 +88,7 @@ export default {
 
         <div v-else-if="tvSeries">
             <div class="img-preview">
-                <img :src="`https://image.tmdb.org/t/p/w780/${tvSeries.backdrop_path}`" alt="">
+                <img :src="ImgPreviewFunction()" alt="">
             </div>
             <div class="preview-info">
                 <div>{{ tvSeries.name }}</div>
@@ -102,12 +115,12 @@ export default {
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.15);
     transition: transform 0.4s;
 
-    .preview-info{
+    .preview-info {
         padding: 20px;
     }
 }
 
-.on-hover:hover{
+.on-hover:hover {
     z-index: 2;
     transform: scale(1.4);
 }
