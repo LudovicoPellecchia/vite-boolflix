@@ -11,7 +11,7 @@ export default {
     data() {
         return {
             store,
-            hovered: false
+            hovered: false,
         }
     },
     methods: {
@@ -44,21 +44,22 @@ export default {
 
         },
 
-        ImgPreviewFunction(){
-        let url = "https://image.tmdb.org/t/p/w780";
-        if (this.movie && this.movie.backdrop_path !== null) {
-            url += this.movie.backdrop_path;
-        } else if (this.tvSeries && this.tvSeries.backdrop_path !== null) {
-            url += this.tvSeries.backdrop_path;
-        } else {
-            url = "/video-movie-placeholder-image-grey.png";
-        }
+        ImgPreviewFunction() {
+            let url = "https://image.tmdb.org/t/p/w780";
+            if (this.movie && this.movie.backdrop_path !== null) {
+                url += this.movie.backdrop_path;
+            } else if (this.tvSeries && this.tvSeries.backdrop_path !== null) {
+                url += this.tvSeries.backdrop_path;
+            } else {
+                url = "/video-movie-placeholder-image-grey.png";
+            }
 
-        return url;
-    },
+            return url;
+        },
 
-        roundAverageVote() {
-        }
+        roundAverageVote(vote) {
+            return Math.ceil(vote / 2);
+        },
     },
 
     mounted() {
@@ -81,7 +82,11 @@ export default {
                 <div>{{ movie.original_title }}</div>
                 <div><img :src="`https://flagsapi.com/${checkLangFlag(movie.original_language).toUpperCase()}/flat/24.png`">
                 </div>
-                <div>{{ movie.vote_average }}</div>
+                <div class="vote-preview">
+                    <i class="fa-solid fa-star star-icon" v-for="n in roundAverageVote(movie.vote_average)"></i>
+                    <i class="fa-regular fa-star star-icon" v-for="n in (5 - roundAverageVote(movie.vote_average) )"></i>
+                </div>
+                <!--<div>{{ roundAverageVote(movie.vote_average )}}</div>-->
             </div>
 
         </div>
@@ -96,7 +101,10 @@ export default {
                 <div><img
                         :src="`https://flagsapi.com/${checkLangFlag(tvSeries.original_language).toUpperCase()}/flat/24.png`">
                 </div>
-                <div>{{ tvSeries.vote_average }}</div>
+                <div class="vote-preview">
+                    <i class="fa-solid fa-star star-icon" v-for="n in roundAverageVote(movie.vote_average)"></i>
+                    <i class="fa-regular fa-star star-icon" v-for="n in (5 - roundAverageVote(movie.vote_average) )"></i>
+                </div>
             </div>
 
         </div>
@@ -133,5 +141,9 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.star-icon {
+    color: gold;
 }
 </style>
