@@ -20,8 +20,8 @@ export default {
 </script>
 
 <template>
-  <TheHeader></TheHeader>
-  <main>
+<TheHeader></TheHeader>
+<main>
     <MovieList></MovieList>
   </main>
 </template>

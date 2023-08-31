@@ -18,6 +18,10 @@ axios.get("https://api.themoviedb.org/3/search/movie",{
 
 } 
 
+export function clearlist(){
+    store.TVlist=[]
+    store.movieList=[]
+}
 
 export function getTVSeriesFromApi() {
 axios.get("https://api.themoviedb.org/3/search/tv",{

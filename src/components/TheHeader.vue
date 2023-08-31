@@ -39,10 +39,9 @@ export default {
                         <a class="nav-link text-white" aria-disabled="true">Sfoglia per lingua</a>
                     </li>
                 </ul>
-            </div>
-            <form class="d-flex" role="search">
                 <SearchBar></SearchBar>
-            </form>
+            </div>
+
         </div>
     </nav>
 </template>
