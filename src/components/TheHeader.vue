@@ -39,8 +39,9 @@ export default {
                         <a class="nav-link text-white" aria-disabled="true">Sfoglia per lingua</a>
                     </li>
                 </ul>
-                <SearchBar></SearchBar>
             </div>
+            <SearchBar></SearchBar>
+
 
         </div>
     </nav>
@@ -56,10 +57,6 @@ nav{
     letter-spacing: 2px;
     font-weight: bold;
 }
-
-    form{
-        width: 30%;
-    }
 }
 
 </style>
